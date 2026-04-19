@@ -48,10 +48,7 @@ async function sendMessage() {
     const data = await response.json();
 
     // Remove loading message
-    const loadingElem = document.getElementById("loading");
-    if (loadingElem) {
-      chatbot.removeChild(loadingElem);
-    }
+    loadingMessage.remove();
 
     // Display bot response
     displayMessage("AiChatbot: " + data.response, "bg-black text-white px-5 py-2 rounded-lg mt-2 w-fit");
@@ -63,10 +60,7 @@ async function sendMessage() {
   } catch (error) {
     console.error("Error:", error);
     // Remove loading message
-    const loadingElem = document.getElementById("loading");
-    if (loadingElem) {
-      chatbot.removeChild(loadingElem);
-    }
+    loadingMessage.remove();
 
     displayMessage(
       "AiChatbot: Sorry, something went wrong. Please try again later.",
