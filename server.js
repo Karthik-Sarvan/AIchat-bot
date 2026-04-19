@@ -36,6 +36,15 @@ app.post(
       .notEmpty()
       .withMessage("Message must be a non-empty string."),
     body("conversation").optional().isArray(),
+    body("conversation.*.role")
+      .isString()
+      .isIn(["system", "user", "assistant"])
+      .withMessage("Role must be one of 'system', 'user', or 'assistant'."),
+    body("conversation.*.content")
+      .isString()
+      .trim()
+      .notEmpty()
+      .withMessage("Content must be a non-empty string."),
   ],
   async (req, res) => {
     // Validate inputs
